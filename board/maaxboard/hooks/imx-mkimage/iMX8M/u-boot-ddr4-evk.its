@@ -1,0 +1,41 @@
+/dts-v1/;
+
+/ {
+	description = "Configuration to load ATF before U-Boot";
+
+	images {
+		uboot@1 {
+			description = "U-Boot (64-bit)";
+			data = /incbin/("u-boot-nodtb.bin");
+			type = "standalone";
+			arch = "arm64";
+			compression = "none";
+			load = <0x40200000>;
+		};
+		fdt@1 {
+			description = "evkddr4";
+			data = /incbin/("evkddr4.dtb");
+			type = "flat_dt";
+			compression = "none";
+		};
+		atf@1 {
+			description = "ARM Trusted Firmware";
+			data = /incbin/("bl31.bin");
+			type = "firmware";
+			arch = "arm64";
+			compression = "none";
+			load = <0x00960000>;
+			entry = <0x00960000>;
+		};
+	};
+	configurations {
+		default = "config@1";
+
+		config@1 {
+			description = "evkddr4";
+			firmware = "uboot@1";
+			loadables = "atf@1";
+			fdt = "fdt@1";
+		};
+	};
+};
