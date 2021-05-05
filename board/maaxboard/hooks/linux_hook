@@ -4,7 +4,7 @@
 # if need to define functions,please name "function linux_[boardname]_*",that avoids overlapping names
 #
 
-function linux_maaxboard_mini_code(){
+function linux_maaxboard_code(){
     cd $1
     local linux_name="linux-imx"
     local tag="maaxboard_5.4.24_2.1.0"
@@ -30,7 +30,7 @@ function linux_maaxboard_mini_code(){
     mv ../${linux_tar} $2
 }
 
-function linux_maaxboard_mini_compile(){
+function linux_maaxboard_compile(){
     log_info "start compile linux..."
     local cpu_core=$(cat /proc/cpuinfo |grep "processor"|wc -l)
     log_info "workspace: "$(pwd)
@@ -57,8 +57,8 @@ function linux_all_build(){
 
     mkdir -p ${linux_modules}
 
-    linux_maaxboard_mini_code ${BASE_ROOT} ${LINUX_SRC_OUTPUT}
-    linux_maaxboard_mini_compile ${linux_modules}
+    linux_maaxboard_code ${BASE_ROOT} ${LINUX_SRC_OUTPUT}
+    linux_maaxboard_compile ${linux_modules}
 
     cd ${tmp_path}
 }

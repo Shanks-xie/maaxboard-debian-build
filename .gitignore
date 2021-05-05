@@ -1,1 +1,7 @@
-/.vscode
+.vscode
+output
+.deb
+.packeages
+logs
+.auto
+.tmp_rootfs

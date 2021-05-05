@@ -135,10 +135,11 @@ function buidl_images(){
     #     fi
     # fi
     
-    cp -af ${PARAM_OUTPUT_DIR}/linux/modules/*  $rootfs_mnt
+    cp -af ${PARAM_OUTPUT_DIR}/linux/modules/lib/*  $rootfs_mnt/lib/
     sync
-
+    sleep 2s
     umount $rootfs_mnt
+    # umount /dev/mapper/${loopName}p2
 
     kpartx -d /dev/${loopName}
     losetup -d /dev/${loopName}

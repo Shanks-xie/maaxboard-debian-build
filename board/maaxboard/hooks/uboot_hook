@@ -5,7 +5,7 @@
 #
 
 
-function uboot_maaxboard_mini_code(){
+function uboot_maaxboard_code(){
     cd $1
     local tag="maaxboard_v2020.04_5.4.24_2.1.0"
     if [[ -d "./uboot-imx" ]];then
@@ -17,6 +17,11 @@ function uboot_maaxboard_mini_code(){
             rm -rf uboot-imx
         fi
     fi
+    cp ${ABSOLUTE_DIRECTORY}"/board/maaxboard/hooks/make_mx8m_atf_uboot.sh" .
+    cp ${ABSOLUTE_DIRECTORY}"/board/maaxboard/hooks/firmware-imx-8.8.bin" .
+    cp -r ${ABSOLUTE_DIRECTORY}"/board/maaxboard/hooks/imx-atf" .
+    cp -r ${ABSOLUTE_DIRECTORY}"/board/maaxboard/hooks/imx-mkimage" .
+    
     git clone -b ${tag} --single-branch http://192.168.2.100/imx8m/uboot-imx.git
     cd uboot-imx
     local VERSION=`grep ^VERSION Makefile | cut -d' ' -f3`
@@ -30,7 +35,7 @@ function uboot_maaxboard_mini_code(){
     mv ../${uboot_tar} $2
 }
 
-function uboot_maaxboard_mini_compile(){
+function uboot_maaxboard_compile(){
     log_info "start compile uboot..."
     # local cpu_core=$(cat /proc/cpuinfo |grep "processor"|wc -l)
     # log_info "workspace: "$(pwd)
@@ -44,11 +49,14 @@ function uboot_maaxboard_mini_compile(){
     # cd tools/imx-boot/
     # make clean
     # make SOC=iMX8M flash_ddr4_em
-    . ./mk-imx-boot.sh maaxboard
-    cd ../../
+    # . ./mk-imx-boot.sh maaxboard
+    # cd ../../
 
-    cp -f ./tools/imx-boot/iMX8M/flash.bin  u-boot.imx
-    cp u-boot.imx ../
+    # cp -f ./tools/imx-boot/iMX8M/flash.bin  u-boot.imx
+    # cp u-boot.imx ../
+
+    cd ..
+    . make_mx8m_atf_uboot.sh -mx8m
 
     log_info "uboot compile finish."
 }
@@ -60,8 +68,8 @@ function uboot_maaxboard_mini_compile(){
 function uboot_all_build(){
     local BASE_ROOT=$1
     local tmp_path=$(pwd)
-    uboot_maaxboard_mini_code ${BASE_ROOT} ${LINUX_SRC_OUTPUT}
-    uboot_maaxboard_mini_compile
+    uboot_maaxboard_code ${BASE_ROOT} ${LINUX_SRC_OUTPUT}
+    uboot_maaxboard_compile
 
     cd ${tmp_path}
 }

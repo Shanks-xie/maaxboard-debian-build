@@ -278,7 +278,7 @@ function install_packages(){
         log_info "install package: "$tar_file
 
         pre_call_function ${ROOTFS_BASE} "Packages" ${key}
-        tar --no-same-owner -xzf ${tar_file}  -C  ${ROOTFS_BASE}
+        tar --no-same-owner -xmzf ${tar_file}  -C  ${ROOTFS_BASE}
         post_call_function ${ROOTFS_BASE} "Packages" ${key}
     done
     IFS=$IFS_old

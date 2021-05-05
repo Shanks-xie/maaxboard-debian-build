@@ -197,7 +197,10 @@ function make_debian_rootfs(){
 
     local LOCAL_APT_PATH=${ROOTFS_BASE}/srv/local-apt-repository
     mkdir -p $LOCAL_APT_PATH
-    cp $DEB_PATH/* $LOCAL_APT_PATH
+    if [ "`ls -A ${DEB_PATH} | wc -w`" > 0]
+    then
+        cp $DEB_PATH/* $LOCAL_APT_PATH
+    fi
     install_third_stage $ROOTFS_BASE
 
     install_system $ROOTFS_BASE

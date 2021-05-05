@@ -15,9 +15,10 @@ function gcc_all_build(){
 
     local BASE_ROOT=$1
     cd $BASE_ROOT
-    if [[ ! -s "./gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz" ]];then 
+    if [[ ! -s "./gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu.tar.xz" ]];then 
         log_info "start download gcc...."
-        wget https://xterra2.avnet.com/embest/imx8m/debian-rootfs-util/-/raw/master/gcc/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz?inline=false -O gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
+        cp /home/xiele/Downloads/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu.tar.xz .
+        # wget https://xterra2.avnet.com/embest/imx8m/debian-rootfs-util/-/raw/master/gcc/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz?inline=false -O gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
         # git clone http://Sandy:12345678@192.168.2.149/embest_imx8_product/gcc-linaro-7.3.1_aarch64.git
         # [[ $? != 0 ]] && {
         #     log_error "Git clone gcc failed."
@@ -28,15 +29,16 @@ function gcc_all_build(){
         # rm -rf gcc-linaro-7.3.1_aarch64
     fi
     
-    if [[ ! -d "./gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu/bin/" ]];then
-        if [[ -s "./gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz" ]] ;then
-            log_info "tar -Jxvf gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz..."
-            tar -Jxvf gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz  > /dev/null 2>&1
-            cp gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz ${LINUX_GCC_OUTPUT}
+    if [[ ! -d "./gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/" ]];then
+        if [[ -s "./gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu.tar.xz" ]] ;then
+            log_info "tar -Jxvf gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu.tar.xz..."
+            tar -Jxvf gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu.tar.xz  > /dev/null 2>&1
+            cp gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu.tar.xz ${LINUX_GCC_OUTPUT}
         fi
     fi
 
-    export CROSS_COMPILE=${BASE_ROOT}"/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-"
+    export PATH=$PATH:${BASE_ROOT}"/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin"
     export ARCH=arm64
+    export CROSS_COMPILE=aarch64-none-linux-gnu- 
     cd -
 }
