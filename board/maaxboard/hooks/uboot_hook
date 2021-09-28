@@ -22,7 +22,7 @@ function uboot_maaxboard_code(){
     cp -r ${ABSOLUTE_DIRECTORY}"/board/maaxboard/hooks/imx-atf" .
     cp -r ${ABSOLUTE_DIRECTORY}"/board/maaxboard/hooks/imx-mkimage" .
     
-    git clone -b ${tag} --single-branch http://192.168.2.100/imx8m/uboot-imx.git
+    git clone -b ${tag} --single-branch https://github.com/Avnet/uboot-imx.git
     cd uboot-imx
     local VERSION=`grep ^VERSION Makefile | cut -d' ' -f3`
     local PATCHLEVEL=`grep ^PATCHLEVEL Makefile | cut -d' ' -f3`

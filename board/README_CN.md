@@ -26,7 +26,7 @@ download_type : 下载方式 scp/wget
 download_url ： 下载对应路径 embest@192.168.2.134:~/rootfs  
 > -------------wget-----------------------------------  
 > download_type=wget  
-> download_url=http://192.168.2.68:8000/<file_path>  
+> download_url=https://xterra2.avnet.com/embest/imx8m/debian-rootfs-util/-/raw/master/<file_path>
 > --------------scp-----------------------------------  
 > download_type=scp  
 > download_url=embest@192.168.2.134:~/rootfs  

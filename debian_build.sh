@@ -71,7 +71,7 @@ function usage()
     echo "            linux       -- clean linux output"
     echo "  -o  -- custom select output directory (default: \"${PARAM_OUTPUT_DIR}\")"
     echo "Examples of use:"
-    echo "  clean the workplace:            sudo ./debian_build.sh -c rootfs -f maaxboard.ini"
+    echo "  clean the workspace:            sudo ./debian_build.sh -c rootfs -f maaxboard.ini"
     echo "  make rootfs image:              sudo ./debian_build.sh -b rootfs -f maaxboard.ini"
     echo
 }
