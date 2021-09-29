@@ -27,8 +27,3 @@ sudo ./debian_build.sh -b all -f board/maaxboard/maaxboard-lite.ini
 ```bash
 # update-binfmts --enable
 ```
-
-2. docker mount: /proc: permission denied
-```bash
-docker run add --privileged
-```
