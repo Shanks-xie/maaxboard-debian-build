@@ -142,7 +142,7 @@ function parse_config_value(){
 function protected_install()
 {
     local _name=$1
-    local repeated_cnt=5;
+    local repeated_cnt=1;
     local RET_CODE=1;
 
     log_info " Installing ${_name}";
@@ -165,21 +165,21 @@ function protected_install()
             break;
         };
 
-        log_info "##########################"
-        log_info "FIX error processing package XXX (--configure)"
-        log_info "##########################"
-        sleep 2;
+        # log_info "##########################"
+        # log_info "FIX error processing package XXX (--configure)"
+        # log_info "##########################"
+        # sleep 2;
         
-        cp -fr /var/lib/dpkg/info/* /var/lib/dpkg/info_old/
-        rm -fr /var/lib/dpkg/info/*
-        apt update
-        apt -f install && {
-            cp -fr /var/lib/dpkg/info/* /var/lib/dpkg/info_old/
-            cp -fr /var/lib/dpkg/info_old/* /var/lib/dpkg/info/
+        # cp -fr /var/lib/dpkg/info/* /var/lib/dpkg/info_old/
+        # rm -fr /var/lib/dpkg/info/*
+        # apt update
+        # apt -f install && {
+        #     cp -fr /var/lib/dpkg/info/* /var/lib/dpkg/info_old/
+        #     cp -fr /var/lib/dpkg/info_old/* /var/lib/dpkg/info/
             
-            RET_CODE=0;
-            break;
-        };
+        #     RET_CODE=0;
+        #     break;
+        # };
 
     done
 
