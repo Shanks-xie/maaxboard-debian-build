@@ -13,14 +13,18 @@ $ sudo apt-get install build-essential binfmt-support qemu qemu-user-static debo
 sudo ./debian_build.sh -b [all/rootfs/uboot/linux] -f [board.ini]
 
 ```bash
-sudo ./debian_build.sh -b all -f board/maaxboard/maaxboard-lite.ini 
+sudo ./debian_build.sh -b all -f board/maaxboard/maaxboard-lite_5.4.24_2.1.0.ini 
+or
+sudo ./debian_build.sh -b all -f board/maaxboard/maaxboard_5.4.24_2.1.0.ini 
 ```
+[More configuration info...](board/README.md)
 
 ## Fetures
 - [x] <b>Maaxboard lite</b>   
 - [ ] <b>Maaxboard</b>  &nbsp;&nbsp; *Not test*
 - [ ] <b>Maaxboard Mini lite</b>  &nbsp;&nbsp; *unfinished*
 - [ ] <b>Maaxboard Mini</b>  &nbsp;&nbsp; *unfinished*
+
 
 ## Some issues
 1. chroot: failed to run command '/debootstrap/debootstrap': Exec format error

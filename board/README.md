@@ -30,7 +30,7 @@ download_url ：the prefix of download url
 > --------------scp-----------------------------------  
 > download_type=scp  
 > download_url=embest@192.168.2.134:~/rootfs  
-> scp 需要添加key到下载服务器上，保证scp免密码  
+> this way required ssh key. 
 > sudo ssh-keygen -t rsa  
 > cat id_rsa.pub >> ~/.ssh/authorized_keys  
 
@@ -74,7 +74,7 @@ Rootfs pre_rootfs_hook，post_rootfs_hook
 ### Include
 load other ini config 
 
-## Hooks 说明
+## Hooks 
 hook has two types
 - section
 - key
@@ -82,11 +82,11 @@ hook has two types
 section: auto、Packages、Apt、Rootfs  
 key: board->section->key，exclude Rootfs
 
-### section钩子 
+### section
 pre_[section]_all  
 post_[section]_all  
 
-### key 钩子  
+### key 
 pre_[section]_[key]  
 post_[section]_[key]  
 
