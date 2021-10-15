@@ -14,8 +14,8 @@
 ### Base
 some basic informations  
 BORAD ： board name, whiche will wirte to /etc/hostname and images name  
-DEBIAN_MIRROR : DEBIAN apt source url
-DEBIAN_RELEASE: DEBIAN version
+DEBIAN_MIRROR : DEBIAN apt source url  
+DEBIAN_RELEASE: DEBIAN version  
 image_sys ：Images type: Yocto/Debian  
 image_version: \[versionid\]\[type\]\[buildid\]  
 > versionid : such as 1.0.0  
