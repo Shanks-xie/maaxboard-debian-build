@@ -149,4 +149,3 @@ cp -f imx-mkimage/iMX8M/flash.bin u-boot.imx
 echo ""
 echo "---Finished--- the boot image is u-boot-${SOC_TYPE}.imx"
 
-exit
